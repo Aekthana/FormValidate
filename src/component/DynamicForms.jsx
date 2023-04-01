@@ -12,7 +12,6 @@ import { styled } from "@mui/material/styles";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
 const CssButton = styled(Button)(({ theme }) => ({
   color: "#F6F5F7",
   border: "2px solid #040404",
@@ -63,22 +62,24 @@ const DynamicForms = () => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: focusedField1 === "name" ||
-        focusedField1 === "lastname" ||
-        focusedField1 === "nickname" ?
-        "rgb(255, 255, 0)" : "#F6F5F7",
+        main:
+          focusedField1 === "name" ||
+          focusedField1 === "lastname" ||
+          focusedField1 === "nickname"
+            ? "rgb(255, 255, 0)"
+            : "#F6F5F7",
       },
     },
   });
 
   const handleSubmit = (values, { setFieldTouched }) => {
-    if(activeForm==="form1"){
-      setValueLinear(50)
-      setValueBufferLinear(100)
-    }else if(activeForm==="form2"){
-      setValueLinear(100)
+    if (activeForm === "form1") {
+      setValueLinear(50);
+      setValueBufferLinear(100);
+    } else if (activeForm === "form2") {
+      setValueLinear(100);
     }
-    
+
     setTimeout(() => {
       setActiveForm("form2");
       Object.keys(formSchemas.form2.fields).forEach((fieldName) => {
@@ -88,8 +89,8 @@ const DynamicForms = () => {
   };
 
   const handleClickBack = () => {
-    setValueLinear(0)
-    setValueBufferLinear(50)
+    setValueLinear(0);
+    setValueBufferLinear(50);
     setTimeout(() => {
       setActiveForm("form1");
     }, 250);
@@ -127,14 +128,18 @@ const DynamicForms = () => {
             sx={{
               width: "1.8rem",
               height: "1.8rem",
-              background: focusedField1 === "name" ||
-              focusedField1 === "lastname" ||
-              focusedField1 === "nickname" ?
-              "rgb(255, 255, 0)" : "#0b0909",
-            border: focusedField1 === "name" ||
-              focusedField1 === "lastname" ||
-              focusedField1 === "nickname" ?
-              "2px solid #F6F5F7" : "2px solid #120e0e",
+              background:
+                focusedField1 === "name" ||
+                focusedField1 === "lastname" ||
+                focusedField1 === "nickname"
+                  ? "rgb(255, 255, 0)"
+                  : "#0b0909",
+              border:
+                focusedField1 === "name" ||
+                focusedField1 === "lastname" ||
+                focusedField1 === "nickname"
+                  ? "2px solid #F6F5F7"
+                  : "2px solid #120e0e",
             }}
           >
             1
@@ -153,14 +158,18 @@ const DynamicForms = () => {
           sx={{
             width: "1.8rem",
             height: "1.8rem",
-            background: focusedField2 === "email" ||
+            background:
+              focusedField2 === "email" ||
               focusedField2 === "password" ||
-              focusedField2 === "confirmpassword" ?
-              "rgb(255, 255, 0)" : "#0b0909",
-            border: focusedField2 === "email" ||
+              focusedField2 === "confirmpassword"
+                ? "rgb(255, 255, 0)"
+                : "#0b0909",
+            border:
+              focusedField2 === "email" ||
               focusedField2 === "password" ||
-              focusedField2 === "confirmpassword" ?
-              "2px solid #F6F5F7" : "2px solid #120e0e",
+              focusedField2 === "confirmpassword"
+                ? "2px solid #F6F5F7"
+                : "2px solid #120e0e",
           }}
         >
           2
@@ -173,7 +182,14 @@ const DynamicForms = () => {
         onSubmit={handleSubmit}
       >
         {(formikProps) => (
-          <FormContext.Provider value={{formikProps,setfocusedField1,setfocusedField2,setValueBufferLinear}}>
+          <FormContext.Provider
+            value={{
+              formikProps,
+              setfocusedField1,
+              setfocusedField2,
+              setValueBufferLinear,
+            }}
+          >
             <Form>
               <Box
                 sx={{

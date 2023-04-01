@@ -10,57 +10,57 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { FormHelperText } from "@mui/material";
-import {styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const CssTextField = styled(TextField)({
-  width: "100%" ,
-  '& label.Mui-focused': {
-    color: 'rgb(255, 255, 0)',
+  width: "100%",
+  "& label.Mui-focused": {
+    color: "rgb(255, 255, 0)",
   },
-  '& label': {
-    color: '#F6F5F7',
-    borderColor: '#120e0e',
+  "& label": {
+    color: "#F6F5F7",
+    borderColor: "#120e0e",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'rgb(255, 255, 0)',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "rgb(255, 255, 0)",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#120e0e',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#120e0e",
     },
-    '&:hover fieldset': {
-      borderColor: '#F6F5F7',
+    "&:hover fieldset": {
+      borderColor: "#F6F5F7",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: 'rgb(255, 255, 0)',
+    "&.Mui-focused fieldset": {
+      borderColor: "rgb(255, 255, 0)",
     },
-    '& input': {
-      color: '#F6F5F7',
+    "& input": {
+      color: "#F6F5F7",
     },
   },
 });
 const StyledFormControl = styled(FormControl)({
-  width: '100%',
-  '& label.Mui-focused': {
-    color: 'rgb(255, 255, 0)',
+  width: "100%",
+  "& label.Mui-focused": {
+    color: "rgb(255, 255, 0)",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#120e0e',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#120e0e",
     },
-    '&:hover fieldset': {
-      borderColor: '#F6F5F7',
+    "&:hover fieldset": {
+      borderColor: "#F6F5F7",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: 'rgb(255, 255, 0)',
+    "&.Mui-focused fieldset": {
+      borderColor: "rgb(255, 255, 0)",
     },
-    '& input': {
-      color: '#F6F5F7',
+    "& input": {
+      color: "#F6F5F7",
     },
   },
 });
 const FormField2 = () => {
-  const {formikProps,setfocusedField2} = useContext(FormContext);
+  const { formikProps, setfocusedField2 } = useContext(FormContext);
   const handleFocus = (field) => {
     setfocusedField2(field);
   };
@@ -75,7 +75,9 @@ const FormField2 = () => {
     event.preventDefault();
   };
 
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownConfirmPassword = (
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -103,7 +105,10 @@ const FormField2 = () => {
             formikProps.touched.password && Boolean(formikProps.errors.password)
           }
         >
-          <InputLabel htmlFor="outlined-adornment-password" sx={{color:"white"}}>
+          <InputLabel
+            htmlFor="outlined-adornment-password"
+            sx={{ color: "white" }}
+          >
             password
           </InputLabel>
           <OutlinedInput
@@ -112,7 +117,7 @@ const FormField2 = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                sx={{color:"white"}}
+                  sx={{ color: "white" }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
@@ -151,7 +156,10 @@ const FormField2 = () => {
             Boolean(formikProps.errors.confirmPassword)
           }
         >
-          <InputLabel htmlFor="outlined-adornment-confirmPassword" sx={{color:"white"}}>
+          <InputLabel
+            htmlFor="outlined-adornment-confirmPassword"
+            sx={{ color: "white" }}
+          >
             confirmPassword
           </InputLabel>
           <OutlinedInput
@@ -160,7 +168,7 @@ const FormField2 = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                sx={{color:"white"}}
+                  sx={{ color: "white" }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowConfirmPassword}
                   onMouseDown={handleMouseDownConfirmPassword}
@@ -176,7 +184,7 @@ const FormField2 = () => {
               onChange: formikProps.handleChange,
               onBlur: formikProps.handleBlur,
               value: formikProps.values.confirmPassword,
-               onFocus: () => handleFocus("confirmpassword"),
+              onFocus: () => handleFocus("confirmpassword"),
             }}
             error={
               formikProps.touched.confirmPassword &&

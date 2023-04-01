@@ -1,39 +1,39 @@
 import { useContext } from "react";
 import { FormContext } from "./DynamicForms";
 import TextField from "@mui/material/TextField";
-import {styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const CssTextField = styled(TextField)({
   width: "100%",
-  '& label.Mui-focused': {
-    color: 'rgb(255, 255, 0)',
+  "& label.Mui-focused": {
+    color: "rgb(255, 255, 0)",
   },
-  '& label': {
-    color: '#F6F5F7',
-    borderColor: '#F6F5F7',
+  "& label": {
+    color: "#F6F5F7",
+    borderColor: "#F6F5F7",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'rgb(255, 255, 0)',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "rgb(255, 255, 0)",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#120e0e',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#120e0e",
     },
-    '&:hover fieldset': {
-      borderColor: '#F6F5F7',
+    "&:hover fieldset": {
+      borderColor: "#F6F5F7",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: 'rgb(255, 255, 0)',
+    "&.Mui-focused fieldset": {
+      borderColor: "rgb(255, 255, 0)",
     },
-    '& input': {
-      color: '#F6F5F7',
+    "& input": {
+      color: "#F6F5F7",
     },
   },
 });
 
-
 const FormField1 = () => {
-  const {formikProps,setfocusedField1,setValueBufferLinear} = useContext(FormContext);
+  const { formikProps, setfocusedField1, setValueBufferLinear } =
+    useContext(FormContext);
 
   const handleFocus = (field) => {
     setfocusedField1(field);
@@ -43,7 +43,6 @@ const FormField1 = () => {
   return (
     <>
       <div style={{ height: "5.5rem" }}>
-        
         <CssTextField
           id="outlined-basic"
           label="ชื่อ"
