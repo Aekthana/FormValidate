@@ -291,9 +291,10 @@ const DynamicForms = () => {
                      }}
                    >
                     <CssButton
-                      variant="outlined"
-                      endIcon={<NavigateBeforeIcon />}
-                    onClick={handleClickBackForm2} 
+                       sx={{ marginRight: "5px" }}
+                       variant="outlined"
+                       startIcon={<NavigateBeforeIcon />}
+                      onClick={handleClickBackForm2} 
                     >
                       BACK
                     </CssButton>
