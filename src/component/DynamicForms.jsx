@@ -11,6 +11,24 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { styled } from "@mui/material/styles";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import FormFinish from "./FormFinish";
+
+const themeFont = createTheme({
+  typography: {
+    fontFamily: [
+      'Kanit, sans-serif',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+});
 
 const CssButton = styled(Button)(({ theme }) => ({
   color: "#F6F5F7",
@@ -76,27 +94,41 @@ const DynamicForms = () => {
     if (activeForm === "form1") {
       setValueLinear(50);
       setValueBufferLinear(100);
+      setTimeout(() => {
+        setActiveForm("form2");
+        Object.keys(formSchemas.form2.fields).forEach((fieldName) => {
+          setFieldTouched(fieldName, false);
+        });
+      }, 250);
     } else if (activeForm === "form2") {
       setValueLinear(100);
+      setTimeout(() => {
+        setActiveForm("formFinish");
+        Object.keys(formSchemas.form2.fields).forEach((fieldName) => {
+          setFieldTouched(fieldName, false);
+        });
+      }, 250);
+
     }
 
-    setTimeout(() => {
-      setActiveForm("form2");
-      Object.keys(formSchemas.form2.fields).forEach((fieldName) => {
-        setFieldTouched(fieldName, false);
-      });
-    }, 250);
-  };
 
+  };
   const handleClickBack = () => {
     setValueLinear(0);
     setValueBufferLinear(50);
     setTimeout(() => {
       setActiveForm("form1");
     }, 250);
+    
   };
+  const handleClickBackForm2 = ()=>{
+    setValueLinear(50);
+    setValueBufferLinear(100);
+    setActiveForm("form2")
+  }
 
   return (
+    <ThemeProvider theme={themeFont}>
     <Container
       maxWidth="sm"
       sx={{
@@ -198,8 +230,11 @@ const DynamicForms = () => {
                   justifyContent: "center",
                 }}
               >
-                {activeForm === "form1" && <FormField1 />}
+                {activeForm === "form1" && <FormField1/>}
                 {activeForm === "form2" && <FormField2 />}
+                {activeForm === "formFinish" && <FormFinish />}
+               
+                {activeForm === "form1" && (
                 <Box
                   sx={{
                     width: "100%",
@@ -208,7 +243,6 @@ const DynamicForms = () => {
                     justifyContent: "flex-end",
                   }}
                 >
-                  {activeForm === "form1" && (
                     <CssButton
                       type="submit"
                       variant="outlined"
@@ -216,7 +250,9 @@ const DynamicForms = () => {
                     >
                       NEXT
                     </CssButton>
+                 </Box>
                   )}
+
                   {activeForm === "form2" && (
                     <Box
                       sx={{
@@ -243,14 +279,33 @@ const DynamicForms = () => {
                         FINISH
                       </CssButton>
                     </Box>
+                    
                   )}
-                </Box>
+                  {activeForm === "formFinish" && (
+                     <Box
+                     sx={{
+                       width: "100%",
+                       mt: 2,
+                       display: "flex",
+                       justifyContent: "flex-start",
+                     }}
+                   >
+                    <CssButton
+                      variant="outlined"
+                      endIcon={<NavigateBeforeIcon />}
+                    onClick={handleClickBackForm2} 
+                    >
+                      BACK
+                    </CssButton>
+                    </Box>
+                  )}
               </Box>
             </Form>
           </FormContext.Provider>
         )}
       </Formik>
     </Container>
+    </ThemeProvider>
   );
 };
 
