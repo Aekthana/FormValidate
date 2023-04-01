@@ -20,7 +20,7 @@ const CssTextField = styled(TextField)({
       borderColor: '#120e0e',
     },
     '&:hover fieldset': {
-      borderColor: '#F6F50F7',
+      borderColor: '#F6F5F7',
     },
     '&.Mui-focused fieldset': {
       borderColor: 'rgb(255, 255, 0)',
@@ -33,7 +33,13 @@ const CssTextField = styled(TextField)({
 
 
 const FormField1 = () => {
-  const formikProps = useContext(FormContext);
+  const {formikProps,setfocusedField1,setValueBufferLinear} = useContext(FormContext);
+
+  const handleFocus = (field) => {
+    setfocusedField1(field);
+    setValueBufferLinear(50);
+  };
+
   return (
     <>
       <div style={{ height: "5.5rem" }}>
@@ -43,6 +49,7 @@ const FormField1 = () => {
           label="ชื่อ"
           variant="outlined"
           name="name"
+          onFocus={() => handleFocus("name")}
           onChange={formikProps.handleChange}
           onBlur={formikProps.handleBlur}
           value={formikProps.values.name}
@@ -57,6 +64,7 @@ const FormField1 = () => {
           label="นามสกุล"
           variant="outlined"
           name="lastName"
+          onFocus={() => handleFocus("lastname")}
           onChange={formikProps.handleChange}
           onBlur={formikProps.handleBlur}
           value={formikProps.values.lastName}
@@ -74,6 +82,7 @@ const FormField1 = () => {
           label="ชื่อเล่น"
           variant="outlined"
           name="nickName"
+          onFocus={() => handleFocus("nickname")}
           onChange={formikProps.handleChange}
           onBlur={formikProps.handleBlur}
           value={formikProps.values.nickName}

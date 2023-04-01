@@ -19,14 +19,14 @@ const CssTextField = styled(TextField)({
   },
   '& label': {
     color: '#F6F5F7',
-    borderColor: '#F6F5F7',
+    borderColor: '#120e0e',
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: 'rgb(255, 255, 0)',
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: 'grey',
+      borderColor: '#120e0e',
     },
     '&:hover fieldset': {
       borderColor: '#F6F5F7',
@@ -46,7 +46,7 @@ const StyledFormControl = styled(FormControl)({
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: '#F6F5F7',
+      borderColor: '#120e0e',
     },
     '&:hover fieldset': {
       borderColor: '#F6F5F7',
@@ -60,7 +60,11 @@ const StyledFormControl = styled(FormControl)({
   },
 });
 const FormField2 = () => {
-  const formikProps = useContext(FormContext);
+  const {formikProps,setfocusedField2} = useContext(FormContext);
+  const handleFocus = (field) => {
+    setfocusedField2(field);
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -83,6 +87,7 @@ const FormField2 = () => {
           label="อีเมลล์"
           variant="outlined"
           name="email"
+          onFocus={() => handleFocus("email")}
           onChange={formikProps.handleChange}
           onBlur={formikProps.handleBlur}
           value={formikProps.values.email}
@@ -123,6 +128,7 @@ const FormField2 = () => {
               onChange: formikProps.handleChange,
               onBlur: formikProps.handleBlur,
               value: formikProps.values.password,
+              onFocus: () => handleFocus("password"),
             }}
             error={
               formikProps.touched.password &&
@@ -170,6 +176,7 @@ const FormField2 = () => {
               onChange: formikProps.handleChange,
               onBlur: formikProps.handleBlur,
               value: formikProps.values.confirmPassword,
+               onFocus: () => handleFocus("confirmpassword"),
             }}
             error={
               formikProps.touched.confirmPassword &&
