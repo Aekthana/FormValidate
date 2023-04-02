@@ -16,17 +16,17 @@ import FormFinish from "./FormFinish";
 const themeFont = createTheme({
   typography: {
     fontFamily: [
-      'Kanit, sans-serif',
-      'BlinkMacSystemFont',
+      "Kanit, sans-serif",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
-      'Roboto',
+      "Roboto",
       '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
+      "Arial",
+      "sans-serif",
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(','),
+    ].join(","),
   },
 });
 
@@ -108,10 +108,7 @@ const DynamicForms = () => {
           setFieldTouched(fieldName, false);
         });
       }, 250);
-
     }
-
-
   };
   const handleClickBack = () => {
     setValueLinear(0);
@@ -119,138 +116,139 @@ const DynamicForms = () => {
     setTimeout(() => {
       setActiveForm("form1");
     }, 250);
-    
   };
-  const handleClickBackForm2 = ()=>{
+  const handleClickBackForm2 = () => {
     setValueLinear(50);
     setValueBufferLinear(100);
-    setActiveForm("form2")
-  }
+    setActiveForm("form2");
+  };
 
   return (
     <ThemeProvider theme={themeFont}>
-    <Container
-      maxWidth="sm"
-      sx={{
-        p: 4,
-        background: " #0b0909",
-        boxShadow: "7px 7px 14px #040404,-7px -7px 14px #120e0e;",
-        borderRadius: "50px",
-        my: 5,
-      }}
-    >
-      <Box sx={{ mb: 3, textAlign: "center" }}>
-        <Typography
-          variant="h3"
-          sx={{ typography: { letterSpacing: "5px" }, fontWeight: "bold" }}
-        >
-          REGISTER
-        </Typography>
-      </Box>
-      <Box
+      <Container
+        maxWidth="sm"
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 4,
+          p: 4,
+          background: " #0b0909",
+          boxShadow: "7px 7px 14px #040404,-7px -7px 14px #120e0e;",
+          borderRadius: "50px",
+          my: 5,
         }}
       >
-        <Box>
+        <Box sx={{ mb: 3, textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            sx={{ typography: { letterSpacing: "5px" }, fontWeight: "bold" }}
+          >
+            REGISTER
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mb: 4,
+          }}
+        >
+          <Box>
+            <Avatar
+              sx={{
+                width: "1.8rem",
+                height: "1.8rem",
+                background:
+                  focusedField1 === "name" ||
+                  focusedField1 === "lastname" ||
+                  focusedField1 === "nickname"
+                    ? "rgb(255, 255, 0)"
+                    : "#0b0909",
+                border:
+                  focusedField1 === "name" ||
+                  focusedField1 === "lastname" ||
+                  focusedField1 === "nickname"
+                    ? "2px solid #F6F5F7"
+                    : "2px solid #120e0e",
+              }}
+            >
+              1
+            </Avatar>
+          </Box>
+          <ThemeProvider theme={theme}>
+            <LinearProgress
+              variant="buffer"
+              color="primary"
+              value={valueLinear}
+              valueBuffer={valueBufferLinear}
+              sx={{ flexGrow: 1 }}
+            />
+          </ThemeProvider>
           <Avatar
             sx={{
               width: "1.8rem",
               height: "1.8rem",
               background:
-                focusedField1 === "name" ||
-                focusedField1 === "lastname" ||
-                focusedField1 === "nickname"
+                (focusedField2 === "email" ||
+                  focusedField2 === "password" ||
+                  focusedField2 === "confirmpassword") &&
+                (activeForm === "form2" || activeForm === "formFinish")
                   ? "rgb(255, 255, 0)"
                   : "#0b0909",
               border:
-                focusedField1 === "name" ||
-                focusedField1 === "lastname" ||
-                focusedField1 === "nickname"
+                (focusedField2 === "email" ||
+                  focusedField2 === "password" ||
+                  focusedField2 === "confirmpassword") &&
+                (activeForm === "form2" || activeForm === "formFinish")
                   ? "2px solid #F6F5F7"
                   : "2px solid #120e0e",
             }}
           >
-            1
+            2
           </Avatar>
         </Box>
-        <ThemeProvider theme={theme}>
-          <LinearProgress
-            variant="buffer"
-            color="primary"
-            value={valueLinear}
-            valueBuffer={valueBufferLinear}
-            sx={{ flexGrow: 1 }}
-          />
-        </ThemeProvider>
-        <Avatar
-          sx={{
-            width: "1.8rem",
-            height: "1.8rem",
-            background:
-              focusedField2 === "email" ||
-              focusedField2 === "password" ||
-              focusedField2 === "confirmpassword"
-                ? "rgb(255, 255, 0)"
-                : "#0b0909",
-            border:
-              focusedField2 === "email" ||
-              focusedField2 === "password" ||
-              focusedField2 === "confirmpassword"
-                ? "2px solid #F6F5F7"
-                : "2px solid #120e0e",
-          }}
-        >
-          2
-        </Avatar>
-      </Box>
 
-      <Formik
-        initialValues={initialValue}
-        validationSchema={formSchemas[activeForm]}
-        onSubmit={handleSubmit}
-      >
-        {(formikProps) => (
-          <FormContext.Provider
-            value={{
-              formikProps,
-              setfocusedField1,
-              setfocusedField2,
-              setValueBufferLinear,
-            }}
-          >
-            <Form>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                {activeForm === "form1" && <FormField1/>}
-                {activeForm === "form2" && <FormField2 />}
-                {activeForm === "formFinish" && <FormFinish />}
-               
-                {activeForm === "form1" && (
+        <Formik
+          initialValues={initialValue}
+          validationSchema={formSchemas[activeForm]}
+          onSubmit={handleSubmit}
+        >
+          {(formikProps) => (
+            <FormContext.Provider
+              value={{
+                formikProps,
+                setfocusedField1,
+                setfocusedField2,
+                setValueBufferLinear,
+              }}
+            >
+              <Form>
                 <Box
                   sx={{
-                    width: "100%",
-                    mt: 2,
                     display: "flex",
-                    justifyContent: "flex-end",
+                    flexDirection: "column",
+                    justifyContent: "center",
                   }}
                 >
-                    <CssButton
-                      type="submit"
-                      variant="outlined"
-                      endIcon={<NavigateNextIcon />}
+                  {activeForm === "form1" && <FormField1 />}
+                  {activeForm === "form2" && <FormField2 />}
+                  {activeForm === "formFinish" && <FormFinish />}
+
+                  {activeForm === "form1" && (
+                    <Box
+                      sx={{
+                        width: "100%",
+                        mt: 2,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                      }}
                     >
-                      NEXT
-                    </CssButton>
-                 </Box>
+                      <CssButton
+                        type="submit"
+                        variant="outlined"
+                        endIcon={<NavigateNextIcon />}
+                      >
+                        NEXT
+                      </CssButton>
+                    </Box>
                   )}
 
                   {activeForm === "form2" && (
@@ -279,33 +277,32 @@ const DynamicForms = () => {
                         FINISH
                       </CssButton>
                     </Box>
-                    
                   )}
                   {activeForm === "formFinish" && (
-                     <Box
-                     sx={{
-                       width: "100%",
-                       mt: 2,
-                       display: "flex",
-                       justifyContent: "flex-start",
-                     }}
-                   >
-                    <CssButton
-                       sx={{ marginRight: "5px" }}
-                       variant="outlined"
-                       startIcon={<NavigateBeforeIcon />}
-                      onClick={handleClickBackForm2} 
+                    <Box
+                      sx={{
+                        width: "100%",
+                        mt: 2,
+                        display: "flex",
+                        justifyContent: "flex-start",
+                      }}
                     >
-                      BACK
-                    </CssButton>
+                      <CssButton
+                        sx={{ marginRight: "5px" }}
+                        variant="outlined"
+                        startIcon={<NavigateBeforeIcon />}
+                        onClick={handleClickBackForm2}
+                      >
+                        BACK
+                      </CssButton>
                     </Box>
                   )}
-              </Box>
-            </Form>
-          </FormContext.Provider>
-        )}
-      </Formik>
-    </Container>
+                </Box>
+              </Form>
+            </FormContext.Provider>
+          )}
+        </Formik>
+      </Container>
     </ThemeProvider>
   );
 };
